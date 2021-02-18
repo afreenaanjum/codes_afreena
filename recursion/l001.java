@@ -192,7 +192,23 @@ public class l001{
         }
 
         for(int i = 0 ; i < str.length(); ++i){
-            permutations(str.substring(0, idx) + str.substring(idx +1), idx + 1 , ans + str.charAt(idx));
+            permutations(str.substring(0, idx) + str.substring(idx +1) , ans + str.charAt(idx));
+        }
+    }
+
+
+    public static void permutationsUnique(String str, String ans ) {
+        if(str.length() == 0) {
+            System.out.println(ans);
+            return;
+        }
+
+        boolean [] visited = new boolean[26];
+        for(int i = 0 ; i < str.length(); ++i){
+            if(!vis[str.charAt(i) - 'a']){
+                vis[str.charAt(i) - 'a'] = true;    
+                permutations(str.substring(0, idx) + str.substring(idx +1) , ans + str.charAt(idx));
+            }
         }
     }
 
