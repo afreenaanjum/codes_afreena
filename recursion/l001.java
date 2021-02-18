@@ -114,7 +114,7 @@ public class l001{
          
         int i = str.charAt(idx) - '0';
         ArrayList<String> smallAns = getKPC(str, idx +1);
-        static String[] codes = { ".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz", "+-*", "/%^" };
+        static String[] codes = { ".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz" };
 
         String code = codes[i];
         ArrayList<String> finalList = new ArrayList<String>();
@@ -149,7 +149,54 @@ public class l001{
             }
         }
         return count;
-    }                                                
+    }   
+
+     public static int getKPCVariant(int idx, String str, String ans){
+        if(str.length() == idx) {
+            System.out.println(ans);
+            return 1;
+        }
+
+        int ii = str.charAt(idx) - '0';
+        int count = 0;
+        String[] codes = { ".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz", "+-*", "/%^" };
+
+        String code = codes[ii];
+
+        for(int i = 0; i < code.length(); ++i) {
+            count += getKPCVariant(idx + 1, str, ans + code.charAt(i) );
+        }
+
+        if( idx < str.length() -1) {
+            int num = (str.charAt(
+                
+            ) - '0') * 10 +( str.charAt(idx + 1) - '0');
+            // System.out.println(num);
+
+            if(num == 10 || num == 11) { // 10 and 11 needs to be handled here
+                code = codes[num];   
+        for(int j = 0; j < code.length(); ++j) {
+                    count += getKPCVariant(idx + 2, str, ans + code.charAt(j) );
+                }
+            }
+
+        }
+        return count;
+    }
+
+
+    public static void permutations(String str, String ans) {
+        if(str.length() == 0) {
+            System.out.println(ans);
+            return;
+        }
+
+        for(int i = 0 ; i < str.length(); ++i){
+            permutations(str.substring(0, idx) + str.substring(idx +1), idx + 1 , ans + str.charAt(idx));
+        }
+    }
+
+
 
     public static void main(String [] args){
         Scanner sc = new Scanner(System.in);
